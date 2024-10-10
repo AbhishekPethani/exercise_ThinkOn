@@ -62,6 +62,14 @@ This endpoint is responsible for creating a new user in the system.
     "phoneNumber": "1234567890"
   }
   ```
+- **Error Response:**
+  - **Status Code:** `409 Conflict`
+  - **Response Body Example:**
+    ```json
+    {
+        "error": "User with username {username} already exists."
+    }
+    ```
 ---
 
 ## 2. GET /users - Retrieve a list of all available users
