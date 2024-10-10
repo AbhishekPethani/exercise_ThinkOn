@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.UserAlreadyExistsException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class UserService {
 
     // Create a new user
     public User createUser(User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new UserAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
+        }
         return userRepository.save(user);
     }
 

@@ -17,5 +17,12 @@ public class GlobalExceptionHandler {
         String errorMessage = "Invalid ID type: ID should be a number";
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("error", errorMessage));
     }
+
+    // Handle UserAlreadyExistsException when duplicate user ID is passed
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<?> handleUserAlreadyExistsException(UserAlreadyExistsException e) {
+        String errorMessage = e.getMessage();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Collections.singletonMap("error", errorMessage));
+    }
     
 }
