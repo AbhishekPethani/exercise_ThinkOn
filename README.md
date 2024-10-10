@@ -130,7 +130,14 @@ This endpoint retrieves the details of a specific user based on the user ID.
         "message": "User with ID {id} not found"
     }
     ```
-
+- **Error Response:**
+  - **Status Code:** `400 Bad Request`
+  - **Response Body Example:**
+    ```json
+    {
+        "error": "Invalid ID type: ID should be a number"
+    }
+    ```
 
 ---
 
@@ -174,7 +181,14 @@ This endpoint updates the details of an existing user.
         "message": "User with ID {id} not found"
     }
     ```
-
+- **Error Response:**
+  - **Status Code:** `400 Bad Request`
+  - **Response Body Example:**
+    ```json
+    {
+        "error": "Invalid ID type: ID should be a number"
+    }
+    ```
 ---
 
 ## 5. DELETE /users/{id} - Delete a User by ID
@@ -199,6 +213,14 @@ This endpoint deletes an existing user by their ID.
     ```json
     {
         "message": "User with ID {id} not found"
+    }
+    ```
+- **Error Response:**
+  - **Status Code:** `400 Bad Request`
+  - **Response Body Example:**
+    ```json
+    {
+        "error": "Invalid ID type: ID should be a number"
     }
     ```
 
