@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +22,9 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         List<User> users = userService.getAllUsers();
         if (users == null) {
-            return ResponseEntity.status(404).body("No users found");
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", "No users found"));
         }
-        return ResponseEntity.ok(users);
+        return ResponseEntity.ok(Collections.singletonMap("users", users));
     }
 
     // Get a user by ID
@@ -33,7 +34,7 @@ public class UserController {
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
-            return ResponseEntity.status(404).body("User with ID " + id + " not found");
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", "User with ID " + id + " not found"));
         }
     }
 
@@ -51,7 +52,7 @@ public class UserController {
         if (updatedUser.isPresent()) {
             return ResponseEntity.ok(updatedUser.get());
         } else {
-            return ResponseEntity.status(404).body("User with ID " + id + " not found");
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", "User with ID " + id + " not found"));
         }
     }
 
@@ -60,9 +61,9 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         boolean deleted = userService.deleteUser(id);
         if (deleted) {
-            return ResponseEntity.ok("User deleted successfully");
+            return ResponseEntity.ok(Collections.singletonMap("message", "User deleted successfully"));
         } else {
-            return ResponseEntity.status(404).body("User with ID " + id + " not found");
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", "User with ID " + id + " not found"));
         }
     }
 }
