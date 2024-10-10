@@ -50,7 +50,7 @@ This endpoint is responsible for creating a new user in the system.
   ```
 
 ### Response
-- **Status Code:** `200 OK` (or `201 Created`)
+- **Status Code:** `200 OK`
 - **Response Body:**
   ```json
   {
@@ -77,24 +77,26 @@ This endpoint returns a list of all users currently stored in the system.
 - **Status Code:** `200 OK`
 - **Response Body Example:**
   ```json
-  [
-    {
-      "id": 1,
-      "username": "explorer",
-      "firstName": "Abhishek",
-      "lastName": "Pethani",
-      "email": "abhishekpethani@gmail.com",
-      "phoneNumber": "1234567890"
-    },
-    {
-      "id": 2,
-      "username": "navigator",
-      "firstName": "Steve",
-      "lastName": "Smith",
-      "email": "steve.smith@gmail.com",
-      "phoneNumber": "9876543210"
-    }
-  ]
+  {
+    "users": [
+        {
+            "id": 1,
+            "username": "explorer",
+            "firstName": "Abhishek",
+            "lastName": "Pethani",
+            "email": "abhishekpethani@gmail.com",
+            "phoneNumber": "1234567890"
+        },
+        {
+            "id": 2,
+            "username": "navigator",
+            "firstName": "Steve",
+            "lastName": "Smith",
+            "email": "steve.smith@gmail.com",
+            "phoneNumber": "9876543210"
+        }
+    ]
+  }
   ```
 ---
 
@@ -123,8 +125,10 @@ This endpoint retrieves the details of a specific user based on the user ID.
 - **Error Response:**
   - **Status Code:** `404 Not Found`
   - **Response Body Example:**
-    ```text
-    User with ID {id} not found
+    ```json
+    {
+        "message": "User with ID {id} not found"
+    }
     ```
 
 
@@ -165,8 +169,10 @@ This endpoint updates the details of an existing user.
 - **Error Response:**
   - **Status Code:** `404 Not Found`
   - **Response Body Example:**
-    ```text
-    User with ID {id} not found
+    ```json
+    {
+        "message": "User with ID {id} not found"
+    }
     ```
 
 ---
@@ -180,12 +186,20 @@ This endpoint deletes an existing user by their ID.
 - **URL:** `/users/{id}`
 
 ### Response
-- **Status Code:** `204 No Content`
+- **Status Code:** `200 OK`
+- **Response Body Example:**
+  ```json
+  {
+    "message": "User deleted successfully"
+  }
+  ```
 - **Error Response:**
   - **Status Code:** `404 Not Found`
   - **Response Body Example:**
-    ```text
-    User with ID {id} not found
+    ```json
+    {
+        "message": "User with ID {id} not found"
+    }
     ```
 
 ---
